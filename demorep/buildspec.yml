@@ -1,0 +1,28 @@
+version: 0.2
+env:
+  variables:
+    bdate: ""
+  exported-variables:
+    - CODEBUILD_BUILD_NUMBER
+    - bdate
+phases:
+  install:
+    runtime-versions:
+      java: corretto11
+  pre_build:
+    commands:
+      - echo Nothing to do in the pre_build phase...
+  build:
+    commands:
+      - export bdate=$(date +%Y.%m.%d)      
+      - echo Build started on $bdate with $CODEBUILD_BUILD_NUMBER
+      - mvn install -Dv=${CODEBUILD_BUILD_NUMBER} -Dbdate=${bdate}
+  post_build:
+    commands:
+      - echo Build completed on `date`
+artifacts:
+  files:
+    - target/firstapp-1.0.0-SNAPSHOT.jar
+    - scripts/*
+    - appspec.yml
+  
