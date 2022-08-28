@@ -13,7 +13,7 @@ resource "aws_iam_role" "cb-service-role" {
   name               = "cb-service-role"
 }
 resource "aws_iam_role_policy" "cb-service-role-policy" {
-  role       = aws_iam_role.cb-service-role.name
+  role   = aws_iam_role.cb-service-role.name
   policy = <<POLICY
 {
   "Version": "2012-10-17",
