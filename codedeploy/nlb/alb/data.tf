@@ -10,18 +10,23 @@ data "aws_vpc" "dev-vpc" {
     values = ["dev-vpc"]
   }
 }
-data "aws_subnet_ids" "private" {
-  vpc_id = data.aws_vpc.dev-vpc.id
+data "aws_subnets" "private" {
+  filter {
+    name   = "vpc-id"
+    values = [data.aws_vpc.dev-vpc.id]
+  }
   filter {
     name   = "tag:Name"
     values = ["dev-vpc-private"] # insert values here
   }
 }
-data "aws_subnet_ids" "public" {
-  vpc_id = data.aws_vpc.dev-vpc.id
+data "aws_subnets" "public" {
+  filter {
+    name   = "vpc-id"
+    values = [data.aws_vpc.dev-vpc.id]
+  }
   filter {
     name   = "tag:Name"
     values = ["dev-vpc-public"] # insert values here
   }
 }
-

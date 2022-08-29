@@ -7,7 +7,12 @@ cd /home/ubuntu
 wget https://aws-codedeploy-us-east-1.s3.amazonaws.com/latest/install
 chmod +x ./install
 sudo ./install auto
-sudo apt install net-tools
+sudo apt-get install net-tools
 sudo mv quote.service /etc/systemd/system/
-sudo apt install awscli -y
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+sudo apt-get install unzip
+unzip awscliv2.zip
+sudo ./aws/install
 rm install
+rm awscliv2.zip
+rm -fr aws

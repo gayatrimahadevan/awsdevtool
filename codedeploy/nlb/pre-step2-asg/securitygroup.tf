@@ -1,6 +1,3 @@
-locals {
-  ifconfig_co_json = jsondecode(data.http.my_public_ip.body)
-}
 resource "aws_security_group" "allow-ssh" {
   vpc_id      = data.aws_vpc.dev-vpc.id
   name        = "allow-ssh"
@@ -15,7 +12,7 @@ resource "aws_security_group" "allow-ssh" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["${local.ifconfig_co_json.ip}/32", data.aws_vpc.dev-vpc.cidr_block]
+    cidr_blocks = ["0.0.0.0/0", data.aws_vpc.dev-vpc.cidr_block]
   }
   tags = {
     Name         = "sg-allow-ssh",

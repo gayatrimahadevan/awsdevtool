@@ -1,12 +1,12 @@
 resource "aws_lb" "nlb" {
   name                             = "my-nlb"
   load_balancer_type               = "application"
-  subnets                          = tolist(data.aws_subnet_ids.public.ids)
+  subnets                          = tolist(data.aws_subnets.public.ids)
   internal                         = false
   idle_timeout                     = 60
   enable_cross_zone_load_balancing = true
   enable_deletion_protection       = false
-  security_groups = [data.aws_security_group.lb-sg.id]
+  security_groups                  = [data.aws_security_group.lb-sg.id]
 }
 
 resource "aws_lb_target_group" "tg-mynlb" {
@@ -16,13 +16,13 @@ resource "aws_lb_target_group" "tg-mynlb" {
   protocol   = "HTTP"
   depends_on = [aws_lb.nlb]
   health_check {
-    path = var.healthcheck-path
-    port = 9090
-    healthy_threshold = 3
+    path                = var.healthcheck-path
+    port                = 9090
+    healthy_threshold   = 3
     unhealthy_threshold = 2
-    timeout = 2
-    interval = 5
-    matcher = "200"
+    timeout             = 2
+    interval            = 5
+    matcher             = "200"
   }
   lifecycle {
     create_before_destroy = true
@@ -43,5 +43,5 @@ resource "aws_lb_listener" "tcp-listener" {
 
 resource "aws_autoscaling_attachment" "asg-tg-attach" {
   autoscaling_group_name = data.aws_autoscaling_group.asg-spot-with-lt.id
-  alb_target_group_arn   = aws_lb_target_group.tg-mynlb.arn
+  lb_target_group_arn   = aws_lb_target_group.tg-mynlb.arn
 }
