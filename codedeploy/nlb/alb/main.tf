@@ -43,5 +43,5 @@ resource "aws_lb_listener" "tcp-listener" {
 
 resource "aws_autoscaling_attachment" "asg-tg-attach" {
   autoscaling_group_name = data.aws_autoscaling_group.asg-spot-with-lt.id
-  lb_target_group_arn   = aws_lb_target_group.tg-mynlb.arn
+  lb_target_group_arn    = aws_lb_target_group.tg-mynlb.arn
 }
