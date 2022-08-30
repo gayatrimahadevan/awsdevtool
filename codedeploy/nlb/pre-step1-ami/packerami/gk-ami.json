@@ -12,7 +12,7 @@
         "source_ami_filter": {
           "filters": {
             "virtualization-type": "hvm",
-            "name": "amazon/amzn2-ami-kernel-5.10-hvm-*",
+            "name": "amzn2-ami-kernel-5.10-hvm-*",
             "root-device-type": "ebs"
           },
           "owners": ["137112412989"],
