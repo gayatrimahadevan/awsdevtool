@@ -18,6 +18,7 @@ phases:
     commands:
       - echo Build completed on `date`
 artifacts:
+  type: zip      
   files:
     - target/firstapp-1.0.0-SNAPSHOT.jar
     - scripts/*

@@ -7,7 +7,7 @@ resource "aws_codebuild_project" "cb" {
     type           = "S3"
     namespace_type = "NONE"
     location       = aws_s3_bucket.cb_output.bucket
-    packaging      = "NONE"
+    packaging      = "ZIP"
   }
   environment {
     compute_type                = "BUILD_GENERAL1_SMALL"
