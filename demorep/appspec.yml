@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 files:
   - source: target/firstapp-1.0.0-SNAPSHOT.jar
-    destination: /home/ubuntu
+    destination: /home/ec2-user
 file_exists_behavior: OVERWRITE
 hooks:
   ApplicationStop:
