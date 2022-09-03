@@ -6,7 +6,7 @@ variable "cb-project-name" {
 variable "cb-output-s3" {
   description = "Bucket for codebuild output."
   type        = string
-  default     = "cb-output-20220828"
+  default     = "cb-output-20220904"
 }
 variable "source-url" {
   description = "Source code Repository URL."
